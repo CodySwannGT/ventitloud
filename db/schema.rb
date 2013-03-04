@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304122738) do
+ActiveRecord::Schema.define(:version => 20130304190852) do
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,18 @@ ActiveRecord::Schema.define(:version => 20130304122738) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "shares", :force => true do |t|
+    t.integer  "vent_id"
+    t.integer  "user_id"
+    t.string   "network"
+    t.string   "with"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "shares", ["user_id"], :name => "index_shares_on_user_id"
+  add_index "shares", ["vent_id"], :name => "index_shares_on_vent_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -49,5 +61,15 @@ ActiveRecord::Schema.define(:version => 20130304122738) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "vents", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "text"
+    t.boolean  "public",     :default => false, :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "vents", ["user_id"], :name => "index_vents_on_user_id"
 
 end

@@ -10,4 +10,11 @@ class User < ActiveRecord::Base
   attr_accessible :role_ids, :as => :admin
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me
   
+  has_many :vents
+  has_many :shares
+  
+  def to_s
+    name
+  end
+  
 end
