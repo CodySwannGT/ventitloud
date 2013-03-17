@@ -1,0 +1,11 @@
+
+<% if @share.vent.public? %>
+  <%= @user.name %> has something to say to you!
+<% else %>
+  Someone has something to say to you!
+<% end %>
+=====================================
+
+<%= @share.vent.text %>
+
+Want to vent back? It's simple, just create an account at Vent It Loud (<%= root_url %>), and you can vent anonymously, publicly, comment on vents and rate vents. How can you say no?

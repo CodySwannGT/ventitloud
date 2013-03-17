@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <% if @share.vent.public? %>
+      <h1><%= @user.name %> has something to say to you!</h1>
+    <% else %>
+      <h1>Someone has something to say to you!</h1>
+    <% end %>
+    
+    <%= simple_format(@share.vent.text) %>
+    <p>
+      Want to vent back? It's simple, just create an account at <%= link_to "Vent It Loud", root_url %>, and you can vent anonymously, publicly, comment on vents and rate vents. How can you say no?
+    </p>
+  </body>
+</html>
