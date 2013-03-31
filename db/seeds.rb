@@ -16,3 +16,7 @@ puts 'DEFAULT USERS'
 user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
 puts 'user: ' << user.name
 user.add_role :admin
+
+%w(Amused Angry Annoyed Anxious Ashamed Bored Calm Confused Crazy Curious Cynical Determined Disappointed Drunk Excited Frustrated Good Guilty Happy Hopeful Hungry Impressed Indifferent Jealous Lonely Loved Mischievous Naughty Nerdy Okay Optimistic Peaceful Pessimistic Rejected Relieved Sad Sick Silly Sleepy Smart Stressed Surprised Sympathetic Thankful Tired Uncomfortable Weird).each do |mood|
+  Mood.find_or_create_by_name(mood)
+end

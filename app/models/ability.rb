@@ -9,7 +9,7 @@ class Ability
       can :read, User
       can :update, User, :id => user.id
       
-      can :read, Vent, :user_id => user.id
+      can :read, Vent#, :user_id => user.id
       can :create, Vent
       
       can :create, Share

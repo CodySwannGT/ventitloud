@@ -1,6 +1,7 @@
 class VentsController < InheritedResources::Base
   belongs_to :user, optional: true
-  load_and_authorize_resource :vent, through: :user, shallow: true, except: [:index]
+  belongs_to :mood, optional: true
+  load_and_authorize_resource :vent, through: [:user, :mood], shallow: true, except: [:index]
   
   before_filter :authorize_parent
   
