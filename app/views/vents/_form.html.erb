@@ -1,11 +1,29 @@
+<%= content_for :breadcrumb do -%>
+  <div class="span12">
+    <ul class="breadcrumb">
+      <li><%= link_to "Vents", [:vents] %><span class="divider">/</span></li>
+      <% if resource.new_record? %>
+        <li class="active">New <%= resource.class.name %></li>
+      <% else %>
+        <li><%= link_to resource, resource %><span class="divider">/</span></li>
+        <li class="active">Edit</li>
+      <% end %>
+    </ul>
+  </div>
+<% end -%>
+
+
 <%= simple_form_for [parent, resource], :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :text, input_html: {rows: 5} %>
-  <%= f.association :mood %>
+  <% if parent_type == :mood %>
+    <%= f.input :text, input_html: {rows: 5, value: f.object.new_record? ? "I'm feeling #{parent}" : f.object.text} %>
+  <% else %>
+    <%= f.input :text, input_html: {rows: 5} %>
+    <%= f.association :mood %>
+  <% end %>
+  
   <%= f.input :public, hint: "Public vents will display your name by them" %>
   
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                vents_path, :class => 'btn' %>
   </div>
 <% end %>

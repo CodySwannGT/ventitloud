@@ -6,11 +6,13 @@ class VentsController < InheritedResources::Base
   before_filter :authorize_parent
   
   def create
-    create!{ user_vents_url(current_user) }
+    @vent = parent? ? parent.vents.build(params[:vent]) : Vent.new(params[:vent])
+    @vent.user = current_user
+    create!{ collection_url }
   end
   
   def update
-    update!{ user_vents_url(current_user) }
+    update!{ collection_url }
   end
   
   protected

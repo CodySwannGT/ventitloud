@@ -1,9 +1,22 @@
-<%= simple_form_for @mood, :html => { :class => 'form-horizontal' } do |f| %>
+<%= content_for :breadcrumbs do -%>
+  <div class="span12">
+    <ul class="breadcrumb">
+      <li><%= link_to "Mood", [:moods] %><span class="divider">/</span></li>
+      <% if resource.new_record? %>
+        <li class="active">Add New</li>
+      <% else %>
+        <li><%= link_to resource, resource %><span class="divider">/</span></li>
+        <li class="active">Edit</li>
+      <% end %>
+    </ul>
+  </div>
+<% end -%>
+
+
+<%= simple_form_for resource, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                moods_path, :class => 'btn' %>
   </div>
 <% end %>

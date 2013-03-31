@@ -1,0 +1,11 @@
+body {
+  background: #0088cc;
+  background-image: image-url("zenbg-1.png"), image-url("zenbg-2.png");
+  background-repeat: repeat-x, repeat;
+}
+
+#main > .container {
+  background-color: white;
+  border: 2px solid #002c42;
+  padding: 20px;
+}

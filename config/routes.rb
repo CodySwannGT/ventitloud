@@ -3,12 +3,12 @@ Ventitloud::Application.routes.draw do
   resources :moods
 
 
-  resources :vents, only: [:index,:show] do
+  resources :vents do
     resources :shares
   end
   
   resources :moods do
-    resources :vents, only: [:index]
+    resources :vents
   end
 
   authenticated :user do

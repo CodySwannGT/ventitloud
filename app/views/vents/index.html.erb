@@ -1,7 +1,23 @@
 <%- model_class = Vent -%>
+
+<%= content_for :breadcrumb do -%>
+  <div class="span9">
+    <ul class="breadcrumb">
+      <% if parent? %>
+        <li><%= link_to parent, parent %><span class="divider">/</span></li>
+      <% end %>
+      <li class="active">Vents</li>
+    </ul>
+  </div>
+  <div class="span3 btn-group">
+    <%= link_to "Vent", [:new,parent,:vent], class: "btn-warning btn" if can? :create, Vent %>
+  </div>
+<% end -%>
+
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1>Vents</h1>
 </div>
+
 <table class="table table-striped">
   <thead>
     <tr>
