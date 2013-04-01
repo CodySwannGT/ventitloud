@@ -4,9 +4,10 @@ class SharesController < InheritedResources::Base
   
   before_filter :authorize_parent
   
+  respond_to :json
+  
   def create
     @share = parent.shares.build(params[:share])
-    @share.network = 'email'
     @share.user = current_user
     create!{ parent }
   end

@@ -1,6 +1,21 @@
 <%- model_class = Share -%>
+
+<%= content_for :breadcrumb do -%>
+  <div class="span12">
+    <ul class="breadcrumb">
+      <li><%= link_to "Vents", [:vents] %><span class="divider">/</span></li>
+      <% if resource.new_record? %>
+        <li class="active">New <%= resource.class.name %></li>
+      <% else %>
+        <li><%= link_to resource, resource %><span class="divider">/</span></li>
+        <li class="active">Edit</li>
+      <% end %>
+    </ul>
+  </div>
+<% end -%>
+
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1>Share <%= parent %></h1>
 </div>
 
 <dl class="dl-horizontal">

@@ -6,10 +6,12 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Ventitloud" %>">
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
+    <%= render partial: "open_graph" %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
   <body class="<%= controller_name %> <%= action_name %>">
+    <%= render partial: "facebook" %>
     <div class="navbar navbar-fixed-top">
       <nav class="navbar-inner">
         <div class="container">

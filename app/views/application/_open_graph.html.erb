@@ -1,0 +1,7 @@
+<% if @vent && !@vent.new_record? %>
+  <meta property="fb:app_id" content="146512788853620" />
+  <meta property="og:site_name" content="Vent It Loud!" />
+  <meta property="og:url" content="<%= vent_url(@vent) %>" />
+  <meta property="og:title" content="<%= @vent.to_s.truncate(20) %>" />
+  <meta property="og:type" content="ventitloud:vent" />
+<% end %>

@@ -8,8 +8,7 @@
     </ul>
   </div>
   <div class="span3 btn-group">
-    <%= link_to "Share", new_vent_share_path(resource), class: "btn-warning btn" if can? :create, Share %>
-    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+    <%= link_to "<span class=\"icon icon-trash\"></span> Delete".html_safe,
                 vent_path(@vent),
                 :method => 'delete',
                 :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },

@@ -10,12 +10,12 @@
     </ul>
   </div>
   <div class="span3 btn-group">
-    <%= link_to "Say Something", [:new,parent,:vent], class: "btn-warning btn" if can? :create, Vent %>
+    <%= link_to "<span class=\"icon-bullhorn icon\"></span> Let It Out!".html_safe, [:new,parent,:vent], class: "btn-warning btn" if can? :create, Vent %>
   </div>
 <% end -%>
 
 <div class="page-header">
-  <h1>Vents</h1>
+  <h1>Latest Vents</h1>
 </div>
 
 <%= render @vents %>

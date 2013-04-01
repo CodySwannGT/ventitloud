@@ -6,7 +6,18 @@ class VentsController < InheritedResources::Base
   before_filter :authorize_parent
   
   def create
-    @vent = parent? ? parent.vents.build(params[:vent]) : Vent.new(params[:vent])
+    if params[:vent_id]
+      @root_vent = Vent.find(params[:vent_id]).root_vent
+      @vent = Vent.new do |vent|
+        vent.vent_id = @root_vent.id
+        vent.mood = @root_vent.mood
+        vent.public = @root_vent.public
+        vent.text = @root_vent.text
+      end
+    else
+      @vent = parent? ? parent.vents.build(params[:vent]) : Vent.new(params[:vent])
+    end
+    
     @vent.user = current_user
     create!{ collection_url }
   end

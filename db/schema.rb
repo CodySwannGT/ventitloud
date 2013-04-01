@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130401165622) do
+ActiveRecord::Schema.define(:version => 20130401212637) do
 
   create_table "comments", :force => true do |t|
     t.integer  "commentable_id",   :default => 0
@@ -93,10 +93,12 @@ ActiveRecord::Schema.define(:version => 20130401165622) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.integer  "mood_id"
+    t.integer  "vent_id"
   end
 
   add_index "vents", ["mood_id"], :name => "index_vents_on_mood_id"
   add_index "vents", ["user_id"], :name => "index_vents_on_user_id"
+  add_index "vents", ["vent_id"], :name => "index_vents_on_vent_id"
 
   create_table "votes", :force => true do |t|
     t.integer  "votable_id"

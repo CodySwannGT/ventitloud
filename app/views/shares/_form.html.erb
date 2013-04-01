@@ -1,6 +1,37 @@
-<%= simple_form_for [parent,resource], :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :with %>
+<%= content_for :breadcrumb do -%>
+  <div class="span12">
+    <ul class="breadcrumb">
+      <li><%= link_to "Vents", [:vents] %><span class="divider">/</span></li>
+      <li><%= link_to parent.to_s.truncate(20), [parent] %><span class="divider">/</span></li>
+      <li><%= link_to "Shares", [parent, :shares] %><span class="divider">/</span></li>
+      <% if resource.new_record? %>
+        <li class="active">New <%= resource.class.name %></li>
+      <% else %>
+        <li><%= link_to resource, resource %><span class="divider">/</span></li>
+        <li class="active">Edit</li>
+      <% end %>
+    </ul>
+  </div>
+<% end -%>
+
+<div class="page-header clearfix row-fluid">
+  <div class="span3">
+    <h1>Share Via:</h1>
+  </div>
+  <div class="btn-group span9">
+    <%= link_to "<span class=\"icon icon-facebook\"></span> Facebook".html_safe, "#", class: "btn btn-large btn-warning", id: "facebook-share", 'data-share-url' => vent_url(parent), 'data-vent-id' => parent.id %>
+    <%= link_to "<span class=\"icon icon-envelope\"></span> Email".html_safe, "#", class: "btn btn-large btn-warning", id: "email-share" %>
+    <%= link_to "<span class=\"icon icon-repeat\"></span> Re-Vent".html_safe, vents_path(vent_id: parent.id), method: "post", class: "btn btn-large btn-warning" %>
+  </div>
+  
+</div>
+
+<%= simple_form_for [parent,resource], :html => { :class => 'form-horizontal', style: 'display:none;' } do |f| %>
+  <%= f.input :with, label: "Email Addresses", as: :text, input_html: {rows:3}, hint: "One email address per line" %>
+  <%= f.input :network, as: :hidden, input_html: {value: "Email"} %>
   <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
+    <div class="btn-group">
+      <%= f.button :submit, :class => 'btn-primary', value: "Send Email" %>
+    </div>
   </div>
 <% end %>
