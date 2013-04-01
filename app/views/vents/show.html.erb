@@ -17,10 +17,21 @@
   </div>
 <% end -%>
 
-<blockquote>
-  <span class="label label-inverse pull-right"><%= resource.mood %></span>
-  <%= simple_format resource.text %>
-  <% if resource.public? %>
-    <small>By <%= resource.user %></small>
+<%= render @vent %>
+
+<h2>Comments</h2>
+
+<% if can? :create, Comment %>
+  <%= simple_form_for([resource,Comment.new], html: { class: 'form-inline' }) do |f| %>
+    <%= f.text_field :body %>
+    <%= hidden_field_tag :return_to, request.url %>
+    <%= f.button :submit, class: 'btn-primary', value: "Add Comment" %>
   <% end %>
-</blockquote>
+<% end %>
+
+<% resource.comments.each do |comment| %>
+  <blockquote>
+    <%= simple_format comment.body %>
+    <small>By <%= comment.user %> at <%=l comment.created_at %></small>
+  </blockquote>
+<% end %>

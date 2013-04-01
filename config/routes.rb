@@ -5,6 +5,8 @@ Ventitloud::Application.routes.draw do
 
   resources :vents do
     resources :shares
+    resources :comments
+    resources :votes
   end
   
   resources :moods do

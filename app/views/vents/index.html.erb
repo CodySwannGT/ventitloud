@@ -10,7 +10,7 @@
     </ul>
   </div>
   <div class="span3 btn-group">
-    <%= link_to "Vent", [:new,parent,:vent], class: "btn-warning btn" if can? :create, Vent %>
+    <%= link_to "Say Something", [:new,parent,:vent], class: "btn-warning btn" if can? :create, Vent %>
   </div>
 <% end -%>
 
@@ -18,33 +18,4 @@
   <h1>Vents</h1>
 </div>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Mood</th>
-      <th>Vent</th>
-      <th>From</th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th class="count"><%= t('shares') %></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @vents.each do |vent| %>
-      <tr>
-        <td><%= link_to vent.mood, [vent.mood, :vents] %></td>
-        <td><%= link_to vent.text, vent %></td>
-        <td>
-          <% if vent.public? %>
-            <%= vent.user %>
-          <% else %>
-            Anonymous
-          <% end %>
-        </td>
-        <td><time class="convert"><%=l vent.created_at %></time></td>
-        <td class="count"><%= vent.shares.count %></td>
-        <td><%= link_to "Share", new_vent_share_path(vent), class: "btn-mini btn-warning btn" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render @vents %>

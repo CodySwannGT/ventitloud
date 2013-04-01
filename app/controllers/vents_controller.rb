@@ -12,6 +12,8 @@ class VentsController < InheritedResources::Base
   end
   
   def update
+    @vent = parent? ? parent.vents.find(params[:id]) : Vent.find(params[:id])
+    @vent.user = current_user
     update!{ collection_url }
   end
   
