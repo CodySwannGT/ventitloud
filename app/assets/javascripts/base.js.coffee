@@ -6,18 +6,18 @@ $(->
       else if (response.status == 'not_authorized')
         FB.login( (response) ->
           if (response.authResponse)
-            console.log('Welcome!  Fetching your information.... ');
+            # console.log('Welcome!  Fetching your information.... ');
             func()
           else
-            console.log('User cancelled login or did not fully authorize.');
+            # console.log('User cancelled login or did not fully authorize.');
         ,{scope: 'email,user_likes,publish_actions'})
       else
         FB.login( (response) ->
           if (response.authResponse)
-            console.log('Welcome!  Fetching your information.... ');
+            # console.log('Welcome!  Fetching your information.... ');
             func()
           else
-            console.log('User cancelled login or did not fully authorize.');
+            # console.log('User cancelled login or did not fully authorize.');
         ,{scope: 'email,user_likes,publish_actions'})
       
     )
@@ -47,10 +47,10 @@ $(->
             You shared that vent on Facebook. Good for you!
           </div>').insertAfter($('#breadcrumbs'))
         )
-        if (!response || response.error)
-          console.log(response.error)
-        else
-          alert('Post ID: ' + response.id);
+        # if (!response || response.error)
+        #   console.log(response.error)
+        # else
+        #   console.log('Post ID: ' + response.id);
       )
     )
   )
