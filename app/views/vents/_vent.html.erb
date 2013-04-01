@@ -3,8 +3,8 @@
     <div class="btn-group pull-right">
       <%= link_to "<span class=\"icon icon-share\"></span> Share (#{vent.shares.count})".html_safe, new_vent_share_path(vent), class: "btn-mini btn-#{mood_to_css(vent.mood.to_s, 'btn')} btn" %>
       <%= link_to "<span class=\"icon icon-comment\"></span> Comment (#{vent.comments.count})".html_safe, vent, class: "btn-mini btn-#{mood_to_css(vent.mood.to_s, 'btn')} btn" %>
-      <%= link_to_if can?(:vote_on, vent), "<span class=\"icon icon-arrow-up\"></span> (#{vent.votes.up.count})".html_safe, vent_path(vent, vent: {user_vote: "like"}), method: "put", class: "btn-mini btn-#{mood_to_css(vent.mood.to_s, 'btn')} btn" %>
-      <%= link_to_if can?(:vote_on, vent), "<span class=\"icon icon-arrow-down\"></span> (#{vent.votes.down.count})".html_safe, vent_path(vent, vent: {user_vote: "bad"}), method: "put", class: "btn-mini btn-#{mood_to_css(vent.mood.to_s, 'btn')} btn" %>
+      <%= link_to_if can?(:vote_on, vent), "<span class=\"icon icon-arrow-up\"></span> (#{vent.votes.up.count})".html_safe, vent_votes_path(vent, vent: {user_vote: "like"}), method: "post", class: "btn-mini btn-#{mood_to_css(vent.mood.to_s, 'btn')} btn" %>
+      <%= link_to_if can?(:vote_on, vent), "<span class=\"icon icon-arrow-down\"></span> (#{vent.votes.down.count})".html_safe, vent_votes_path(vent, vent: {user_vote: "bad"}), method: "post", class: "btn-mini btn-#{mood_to_css(vent.mood.to_s, 'btn')} btn" %>
     </div>
     <%= simple_format vent.text %>
     <small>

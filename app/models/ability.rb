@@ -17,6 +17,7 @@ class Ability
         can :destroy, Vent, :user_id => user.id
       
         can :create, Share
+        can :create, Comment
         can :create, ActsAsVotable::Vote
       end
     # end

@@ -1,16 +1,13 @@
-class VotesController < InheritedResources::Base
-  load_resource :vent
-  load_and_authorize_resource :vote, through: [:vent], shallow: true, except: [:index]
-  
-  belongs_to :vent, polymorphic: true, optional: true  
-  respond_to :json
+class VotesController < ApplicationController
+  skip_load_and_authorize_resource
   
   def create
-    @vent = parent.vents.build
+    authorize! :create, ActsAsVotable::Vote
+    @vent = Vent.find(params[:vent_id])
     @vent.vote voter: current_user, vote: params[:user_vote]
     
     respond_to do |format|
-      format.html { redirect_to parent }
+      format.html { redirect_to @vent }
     end
   end
 end
